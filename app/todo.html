@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.2/angular.min.js"></script>
+    <script src="http://gregpike.net/demos/angular-local-storage/angular-local-storage.js"></script>
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css">
+  </head>
+  <body>
+    <h2>Список самых важных дел</h2>
+    <div ng-controller="TodoController">
+      <span>{{remaining()}} из {{todos.length}} осталось</span>
+      [ <a href="" ng-click="archive()">в архив</a> | <a href="" ng-click="waiting()">ожидание</a> | <a href="" ng-click="progress()">в процессе</a> | <a href="" ng-click="completed()">завершено</a> ]
+      <ul class="unstyled">
+        <li ng-repeat="todo in todos">
+          <input type="checkbox" ng-model="todo.done">
+          <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="addTodo()">
+        <input type="text" ng-model="todoText"  size="30"
+               placeholder="добавьте новую задачу здесь">
+        <input class="btn-primary" type="submit" value="добавить">
+      </form>
+    </div>
+  </body>
+</html>
